@@ -6,3 +6,6 @@ npm-debug.log
 
 ## ignore webpack-built files
 dist/
+
+## ignore db files
+db/
