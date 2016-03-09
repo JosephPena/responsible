@@ -7,14 +7,14 @@ knex.schema.createTableIfNotExists('users', function (table) {
   table.string('password').notNullable();
   table.string('first_name').notNullable();
   table.string('last_name').notNullable();
-  table.string('street_address').unique().notNullable();
+  table.string('street_address').notNullable();
   table.string('city').notNullable;
   table.string('state').notNullable;
   table.integer('zipcode').notNullable;
   table.integer('phone_number').unique().notNullable;
   table.string('email').unique().notNullable();
   table.string('emergency_contact').notNullable();
-  table.string('avatar').unique().notNullable();
+  table.string('avatar').notNullable();
   table.timestamps();
 }),
 
@@ -22,12 +22,15 @@ knex.schema.createTableIfNotExists('friend', function (table) {
   table.increments('id').primary();
   table.integer('user').references('id').inTable('users').notNullable();
   table.integer('friend').references('id').inTable('users').notNullable();
+
+  // table.integer('user').inTable('users').references('id').notNullable();
+  // table.integer('friend').inTable('users').references('id').notNullable();
 }),
 
 knex.schema.createTableIfNotExists('ride', function (table) {
   table.increments('id').primary();
-  table.integer('id_ride').notNullable();
-  table.integer('id_user').notNullable();
+  table.integer('user').references('id').inTable('users').notNullable();
+  table.integer('friend').references('id').inTable('users').notNullable();
   table.string('location').notNullable();
   table.timestamps();
 }),
