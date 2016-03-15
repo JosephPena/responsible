@@ -73,7 +73,6 @@ knex.schema.createTableIfNotExists('ride', function (table) {
   table.increments('ride_id').primary();
   table.integer('foreign_driver').references('id', 'username').inTable('users').notNullable();
   table.integer('foreign_rider').references('id', 'username').inTable('users').notNullable();
-  table.timestamp();
 }),
 
 knex.schema.createTableIfNotExists('cars', function (table) {
@@ -89,7 +88,6 @@ knex.schema.createTableIfNotExists('messages', function (table) {
   table.string('foreign_message1').references('foreign_rider').inTable('ride').notNullable();
   table.string('foreign_message2').references('foreign_driver').inTable('ride').notNullable();
   table.integer('foreign_ride').references('id').inTable('ride').notNullable();
-  table.timestamp();
 }),
 
 ]);
