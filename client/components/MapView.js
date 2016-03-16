@@ -8,33 +8,31 @@ export function MapView(props) {
   }
 
   if (navigator.geolocation) {
-    console.log('are you locating me?', navigator.geolocation);
+    navigator.geolocation.getCurrentPosition(function (data) {
+    console.log('all the location data', data);
+  });
+
+    navigator.geolocation.getCurrentPosition(function (data) {
+    coord.lat = data.coords.latitude;
+    lng = data.coords.longitude;
+  });
+
     //clearWatch()    watchPosition()    getCurrentPosition()
     navigator.geolocation.getCurrentPosition(GoogleMap, errorError);
-  } else {
-    alert('Your browser does not support Geolocation.');
   };
 
   var austin = {
-  lat: 30.2672,
-  lng: -97.7431,
-};
+	  lat: 30.2672,
+	  lng: -97.7431,
+	};
   return (
-<<<<<<< b7053ad7893432082735b56a39910a5040fb9619
     <div className='map'>
       <GoogleMapLoader
       ref={(map) => console.log(map)}
       containerElement={ <div style={{ height: '70%' }} /> }
-      googleMapElement={ <GoogleMap defaultZoom={14} defaultCenter={{ lat: austin.lat, lng: austin.lng }}></GoogleMap> }
+      googleMapElement={ <GoogleMap defaultZoom={14} defaultCenter={{ lat: props.lat, lng: this.props.lng }}>
+      </GoogleMap> }
       />
     </div>
 	);
-=======
-  <div className='map'>
-    <GoogleMapLoader
-      containerElement={ <div style={{ height: '90%' }} /> }
-      googleMapElement={ <GoogleMap defaultZoom={14} defaultCenter={{ lat: 30.2672, lng: -97.7431 }}></GoogleMap> }/>
-  </div>
-  );
->>>>>>> (feat) more maps updates
 };
