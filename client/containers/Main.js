@@ -9,7 +9,10 @@ import { RiderItemList } from './RiderItemList';
 
 import * as userAction from '../actionCreators/user';
 
-function Main({ isDriver, isRider, riders }) {
+function Main({ isDriver, isRider, match, location, directions, onDirectionsResult }) {
+  console.log('isDriver, isRider:', isDriver, isRider);
+  console.log('match', match)
+  console.log('location', location)
   return (
     <div className="MainApp">
     <button onClick={User.facebook}>Facebook</button>
@@ -19,8 +22,7 @@ function Main({ isDriver, isRider, riders }) {
       {
         !isDriver && !isRider ?
           <SplashContainer /> :
-          <MapView />
-      }
+          <MapView isRider={isRider} match={match} location={location} directions={directions} onDirectionsResult={onDirectionsResult} />      }
       {
         isDriver ?
         <RiderItemList riders={riders} /> :
@@ -37,15 +39,26 @@ function Main({ isDriver, isRider, riders }) {
 
 const mapStateToProps = function (state) {
   // console.log('main container mapStateToProps state:', state.toJS());
-  let riders = state.toJS().ride.riders;
-  let userState = state.toJS().user;
+
+  let stateJS = state.toJS()
   return {
-    isRider: userState.isRider,
-    isDriver: userState.isDriver,
-    riders: riders,
+    isRider: stateJS.user.isRider,
+    isDriver: stateJS.user.isDriver,
+    location: stateJS.user.location,
+    match: stateJS.ride.match,
+    directions: stateJS.ride.directions,
   };
 };
 
+const mapDispatchToProps = function(dispatch) {
+  return {
+    onDirectionsResult(result) {
+      // dispatch(rideActions.setDirections(result));
+    }
+  }
+}
+
 export const MainContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Main);
