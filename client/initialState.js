@@ -1,4 +1,4 @@
-export default {
+ export default {
   user: {
     id: 1,
     profile: {
@@ -11,6 +11,7 @@ export default {
     },
     isDriver: false,
     isRider: false,
+    location: {lat:30, lng:97},
     friends: [
       {
         id: 2,

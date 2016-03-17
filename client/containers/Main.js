@@ -6,8 +6,10 @@ import { SplashContainer } from './Splash';
 import { MapView } from '../components/MapView';
 import User from '../models/users';
 
-function Main({ isDriver, isRider }) {
+function Main({ isDriver, isRider, match, location }) {
   console.log('isDriver, isRider:', isDriver, isRider);
+  console.log('match', match)
+  console.log('location', location)
   return (
     <div className="MainApp">
     <button onClick={User.facebook}>Facebook</button>
@@ -17,7 +19,7 @@ function Main({ isDriver, isRider }) {
       {
         !isDriver && !isRider ?
           <SplashContainer /> :
-          <MapView />
+          <MapView match={match} location={location} />
       }
       {
         isRider ?
@@ -31,10 +33,12 @@ function Main({ isDriver, isRider }) {
 const mapStateToProps = function (state) {
   // console.log('main container mapStateToProps state:', state.toJS());
 
-  let userState = state.toJS().user;
+  let userState = state.toJS()
   return {
-    isRider: userState.isRider,
-    isDriver: userState.isDriver,
+    isRider: userState.user.isRider,
+    isDriver: userState.user.isDriver,
+    location: userState.user.location,
+    match: userState.ride.match,
   };
 };
 
