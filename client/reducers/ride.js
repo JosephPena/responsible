@@ -29,6 +29,9 @@ export default function(state = Map(), action) {
     case 'REQUEST_MESSAGES_ERROR':
     case 'ADD_MESSAGE':
       return handleMessages(state, action);
+    case 'SET_DIRECTIONS':
+      console.log('setting directions:', action.entry);
+      return state.merge(action.entry);
   };
 
   return state;

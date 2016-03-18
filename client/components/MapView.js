@@ -30,33 +30,78 @@ import { GoogleMapLoader, GoogleMap , Marker, DirectionsRenderer } from 'react-g
     //clearWatch()    watchPosition()    getCurrentPosition()
     // navigator.geolocation.getCurrentPosition(GoogleMap, errorError);
 
-export function MapView ({ match, location }) {
+export function MapView ({ match, location, onDirectionsResult, directions }) {
 
 const DirectionsService = new google.maps.DirectionsService();
     DirectionsService.route({
-      origin: { location },
-      destination: {lat:41, lng:73},
+    origin: {lat:41.8507300, lng:-87.6512600},
+    destination: {lat:41.8525800, lng:-87.6514100},
       travelMode: google.maps.TravelMode.DRIVING,
     }, (result, status) => {
+    	onDirectionsResult(result);
      	console.log('these are results', result)
      	console.log('these are status', status)
       }
     )
 
-    return <div></div>
+
+ return (
+   <div className='map'>
+      <GoogleMapLoader
+      containerElement={ <div style={{ height: '70%' }} /> }
+      googleMapElement={ <GoogleMap defaultZoom={14} defaultCenter={ location } >
+      {directions ? <DirectionsRenderer directions={directions} /> : null}
+      </GoogleMap> }
+      />
+    </div>
+	);
+};
+
+
+
+
+
+
+
+
+function Map ({ match, location }) {
+  return (
+    <div className='map'>
+      match ? 
+        <GoogleMap getDirectionsBetween={riderLocation, driverLocation} />
+      :
+      <GoogleMapLoader
+      ref={(map) => console.log('map data1', map)}
+      containerElement={ <div style={{ height: '70%' }} /> }
+      googleMapElement={ <GoogleMap defaultZoom={14} defaultCenter={ location } >
+      </GoogleMap> }
+      />
+    </div>
+	);
+};
+
+
+
+const mapDispatchToProps = function(dispatch){
+  return (
+    const DirectionsService = new google.maps.DirectionsService();
+    DirectionsService.route({
+    origin: {lat:41.8507300, lng:-87.6512600},
+    destination: {lat:41.8525800, lng:-87.6514100},
+      travelMode: google.maps.TravelMode.DRIVING,
+    }, (result, status) => {
+    	onDirectionsResult(result);
+     	console.log('these are results', result)
+     	console.log('these are status', status)
+      }
+    )
+  	)
 }
 
-//  return (
-//    <div className='map'>
-//      // <GoogleMapLoader
-//       ref={(map) => console.log('map data1', map)}
-//       containerElement={ <div style={{ height: '70%' }} /> }
-//       googleMapElement={ <GoogleMap defaultZoom={14} defaultCenter={ location } >
-//       </GoogleMap> }
-//       />
-//     </div>
-// 	);
-// };
+export const MapView = connect(
+
+
+)
 
 
 
@@ -64,20 +109,4 @@ const DirectionsService = new google.maps.DirectionsService();
 
 
 
-
-// export function MapView ({ match, location }) {
-//   return (
-//     <div className='map'>
-//       match ? 
-//         <GoogleMap getDirectionsBetween={riderLocation, driverLocation} />
-//       :
-//       <GoogleMapLoader
-//       ref={(map) => console.log('map data1', map)}
-//       containerElement={ <div style={{ height: '70%' }} /> }
-//       googleMapElement={ <GoogleMap defaultZoom={14} defaultCenter={ location } >
-//       </GoogleMap> }
-//       />
-//     </div>
-// 	);
-// };
 

@@ -11,7 +11,7 @@
     },
     isDriver: false,
     isRider: false,
-    location: {lat:30, lng:97},
+    location: {lat:30.2672, lng:-97.7431},
     friends: [
       {
         id: 2,
@@ -67,6 +67,7 @@
     acceptRideError: null,
     rideRequestError: null,
     messagesFetchError: null,
+    directions: null,
   },
   routing: {
     locationBeforeTransitions: null,

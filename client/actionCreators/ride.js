@@ -96,3 +96,7 @@ function cancelRideError(error) {
 export function removeRider(riderId) {
   return { type: 'REMOVE_RIDER', entry: riderId };
 };
+
+export function setDirections(directions) {
+  return { type: 'SET_DIRECTIONS', entry: directions }
+}
