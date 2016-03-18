@@ -8,11 +8,14 @@ import { GithubButton } from '../models/Github';
 import { RiderItemList } from './RiderItemList';
 
 import * as userAction from '../actionCreators/user';
+import * as rideActions from '../actionCreators/ride';
+
 
 function Main({ isDriver, isRider, match, location, directions, onDirectionsResult }) {
   console.log('isDriver, isRider:', isDriver, isRider);
   console.log('match', match)
   console.log('location', location)
+  console.log('location, directions, result', location, directions, onDirectionsResult);
   return (
     <div className="MainApp">
     <button onClick={User.facebook}>Facebook</button>
@@ -27,6 +30,7 @@ function Main({ isDriver, isRider, match, location, directions, onDirectionsResu
         isDriver ?
         <RiderItemList riders={riders} /> :
         <div className="empty" />
+          <MapView isRider={isRider} match={match} location={location} directions={directions} onDirectionsResult={onDirectionsResult} />
       }
       {
         isRider ?

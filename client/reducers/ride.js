@@ -32,8 +32,14 @@ export default function(state = Map(), action) {
     case 'REQUEST_MESSAGES_ERROR':
     case 'ADD_MESSAGE':
       return handleMessages(state, action);
+<<<<<<< ffa656f1d9365f6e1bc388475e7a14d11e5a6193
 
     // HANDLE USER LOGGING OUT!
+=======
+    case 'SET_DIRECTIONS':
+      console.log('setting directions:', action.entry);
+      return state.merge(action.entry);
+>>>>>>> preparing to merge all files
   };
 
   return state;

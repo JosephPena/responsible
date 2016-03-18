@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
     //clearWatch()    watchPosition()    getCurrentPosition()
     // navigator.geolocation.getCurrentPosition(GoogleMap, errorError);
 
-
 const DirectionsService = new google.maps.DirectionsService();
     DirectionsService.route({
     origin: {lat:41.8507300, lng:-87.6512600},
@@ -17,8 +16,7 @@ const DirectionsService = new google.maps.DirectionsService();
       console.log('these are results', result)
       console.log('these are status', status)
       }
-    )
-
+    ) 
 
 //  return (
 //    <div className='map'>
@@ -32,12 +30,7 @@ const DirectionsService = new google.maps.DirectionsService();
 //  );
 // };
 
-
-
-
-
-
-function Map ({ match, location, onMapView, directions }) {
+function Map ({ match, location, onMapView, directions, onDirectionsResult }) {
   return match ? 
   (
     <div className='map'>
@@ -142,6 +135,7 @@ export const MapView = connect(
 //     },
 //   };
 // };
+
 
 // export const GithubButton = connect(
 //   null,
