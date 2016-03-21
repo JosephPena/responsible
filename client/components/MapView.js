@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMapLoader, GoogleMap, Marker, DirectionsRenderer } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, DirectionsRenderer } from 'react-google-maps';
 import { connect } from 'react-redux';
 
 // overlayMapTypes
@@ -23,7 +23,7 @@ function Map({ match, location, directions }) {
   (
     <div className='map'>
       <GoogleMapLoader
-      ref={(map) => console.log('map data1', map)}
+      ref={(map) => console.log('NO MATCH', map)}
       containerElement={ <div style={{ height: '70%' }} /> }
       googleMapElement={ <GoogleMap defaultZoom={14} defaultCenter={ location } >
       </GoogleMap> }
