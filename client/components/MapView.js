@@ -20,10 +20,7 @@ function Map({ match, location, directions }) {
   (
     <div className='map'>
       <GoogleMapLoader
-<<<<<<< aa434207f27c6464e2b65062eeccced31826a35e
-=======
         ref={(map) => console.log('MATCH!', map)}
->>>>>>> (fix) removed unecessary code
         containerElement={ <div style={{ height: '70%' }} /> }
         googleMapElement={
           <GoogleMap defaultZoom={14} defaultCenter={ location } >
