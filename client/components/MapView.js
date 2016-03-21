@@ -1,14 +1,19 @@
 import React from 'react';
-import { GoogleMapLoader, GoogleMap, DirectionsRenderer } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, Marker, DirectionsRenderer } from 'react-google-maps';
 import { connect } from 'react-redux';
 
 // overlayMapTypes
 // MapTypes
 function Map({ match, location, directions }) {
+  console.log('these are directions', directions);
   return match ?
   (
     <div className='map'>
       <GoogleMapLoader
+<<<<<<< aa434207f27c6464e2b65062eeccced31826a35e
+=======
+        ref={(map) => console.log('MATCH!', map)}
+>>>>>>> (fix) removed unecessary code
         containerElement={ <div style={{ height: '70%' }} /> }
         googleMapElement={
           <GoogleMap defaultZoom={14} defaultCenter={ location } >
