@@ -4,24 +4,24 @@ import { connect } from 'react-redux';
 
 // overlayMapTypes
 // MapTypes
-function Map({ match, location, directions }) {
-  const state = {
-   markers: [{
-     position: {
-       lat: 30.2705365,
-       lng: -97.7362387,
-     },
-     defaultAnimation: 1,
-   },
-   ],
- };
+function Map({ match, location, riders, directions }) {
+  console.log('riders:', riders)
+ //  const state = {
+ //   markers: [
+ //     {
+ //       position: location,
+ //       defaultAnimation: 1,
+ //     },
+
+ //   ],
+ // };
   console.log('these are directions', directions);
   return match ?
   (
     <div className='map'>
       <GoogleMapLoader
         ref={(map) => console.log('MATCH!', map)}
-        containerElement={ <div style={{ height: '70%' }} /> }
+        containerElement={ <div style={ { height: '70%' } } /> }
         googleMapElement={
           <GoogleMap defaultZoom={14} defaultCenter={ location } >
             {
@@ -38,15 +38,23 @@ function Map({ match, location, directions }) {
   (
     <div className='map'>
     <GoogleMapLoader
-        ref={(map) => console.log('OHHHH... YOU WALKIN!', map)}
+       ref={(map) => console.log('OH YOU WALKIN!', map)}
        containerElement={<div style={{ height: '100%' }} />}
        googleMapElement={
-        <GoogleMap defaultZoom={16} defaultCenter={ location } >
-         {state.markers.map((marker) => {
-           return (
-        <Marker {...marker} />
-           );
-         })};
+        <GoogleMap defaultZoom={14} defaultCenter={ location } >
+         {
+          riders.map((rider) => {
+            console.log('this is rider, ryder, rydur', rider);
+            let riderMarker = {};
+            riderMarker.position = rider.location;
+            riderMarker.defaultAnimation = 1;
+
+            return (
+              <Marker {...riderMarker} />
+              //properly iterates through riders in initialState but only maps 
+            );
+          })
+        };
          </GoogleMap>
        }
      />
