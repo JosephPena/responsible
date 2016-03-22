@@ -65,7 +65,6 @@ export default {
         user_id: 2,
         foreign_rider: 11,
         location: { lat: 30.267701, lng: -97.736303 },
-
       },
       {
         user_id: 3,
