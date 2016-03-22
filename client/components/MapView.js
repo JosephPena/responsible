@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleMapLoader, GoogleMap, Marker, DirectionsRenderer } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, Marker, DirectionsRenderer, InfoWindow } from 'react-google-maps';
 import { connect } from 'react-redux';
 
 // overlayMapTypes
@@ -33,9 +33,13 @@ export function MapView({ match, location, riders, directions }) {
           riders.map((rider) => {
             let riderMarker = {};
             riderMarker.position = rider.location;
-            riderMarker.defaultAnimation = 1;
+            riderMarker.showInfo = ('Rider_') + rider.rider_id.toString();
+            console.log('riderInfo', riderMarker.showInfo);
             return (
-              <Marker {...riderMarker} />
+              <Marker position={riderMarker.position}
+              defaultAnimation={1}>
+                <InfoWindow content={riderMarker.showInfo}/>
+              </Marker>
 
               //properly iterates through riders in initialState but only maps first one
             );
