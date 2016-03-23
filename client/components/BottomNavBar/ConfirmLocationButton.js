@@ -1,8 +1,6 @@
 require('../../public/styles/styles.css');
 
-export function ConfirmLocationButton({
-  confirmLocation,
-}) {
+export function ConfirmLocationButton({ confirmLocation }) {
   return (
     <div className='ConfirmLocation' onClick={confirmLocation}>
 			<section className='hero is-success'>
@@ -15,3 +13,12 @@ export function ConfirmLocationButton({
     </div>
   );
 }
+
+
+
+
+//button to say that rider is picked up
+//buttoon to say that ride is closed/finished
+
+
+//use confirmed location button
