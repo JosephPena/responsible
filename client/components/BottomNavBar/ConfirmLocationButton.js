@@ -13,3 +13,12 @@ export function ConfirmLocationButton({ confirmLocation }) {
     </div>
   );
 }
+
+
+
+
+//button to say that rider is picked up
+//buttoon to say that ride is closed/finished
+
+
+//use confirmed location button
