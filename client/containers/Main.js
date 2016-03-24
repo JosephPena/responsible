@@ -7,12 +7,14 @@ import { MapView } from '../components/MapView';
 import { GithubButton } from '../models/Github';
 import { RiderItemList } from './RiderItemList';
 
+import { End } from '../components/End';
+
 import * as userAction from '../actionCreators/user';
 import * as rideActions from '../actionCreators/ride';
 
 function Main({
   user: { isLoggedIn, location, profile, isDriver, isRider, },
-  ride: { riders, match, directions, },
+  ride: { riders, isMatched, match, directions, },
 }) {
   return (
     <div className="MainApp">
@@ -20,18 +22,25 @@ function Main({
       {
         !isDriver && !isRider ?
           <SplashContainer /> :
-          <MapView match={match} location={location} riders={riders} directions={directions} />
+          <MapView match={match}
+            location={location}
+            riders={riders}
+            directions={directions}
+            isDriver={isDriver}
+            isRider={isRider}
+          />
       }
       {
-        isDriver ?
+        isDriver && !match ?
           <RiderItemList /> :
           <div className="empty" />
       }
       {
-        isRider ?
+        isRider || (isDriver && isMatched) ?
         <BottomNavBarContainer /> :
         <div className="empty" />
       }
+      <End />
     </div>
   );
 };
