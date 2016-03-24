@@ -43,7 +43,7 @@ export function MapView({ isRider, isDriver, match, location, riders, directions
             return (
               <Marker
                 position={riderMarker.position}
-                defaultAnimation={2}>
+                defaultAnimation={1}>
                 <InfoWindow content={riderMarker.showInfo}/>
               </Marker>
             );
